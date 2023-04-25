@@ -1,0 +1,19 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "the virtual keyboard for Windows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint --ext js"
+  },
+  "keywords": [
+    "keyboard",
+    "windows"
+  ],
+  "author": "Gritskov Denis <denisgreckij38@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.14.0"
+  }
+}
