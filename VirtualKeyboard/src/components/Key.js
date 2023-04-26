@@ -1,4 +1,4 @@
-class Key {
+export class Key {
   value = null
   specials = [
     'Tab',

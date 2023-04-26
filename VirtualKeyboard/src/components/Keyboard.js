@@ -1,4 +1,6 @@
-class KeyBoard {
+import { Key } from "./Key.js"
+
+export class Keyboard {
   keyboard = null;
   keyboardIds = [
     [
