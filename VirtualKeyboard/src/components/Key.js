@@ -108,26 +108,26 @@ export class Key {
       else if (value == 'CtrlLeft' || value == 'CtrlRight') temp = 'Ctrl'
       else if (value == 'AltLeft' || value == 'AltRight') temp = 'Alt'
       else if (value == 'Space') temp = ''
-      key.textContent = temp;
+      key.textContent = temp
     } else {
-      let lang = localStorage.getItem('display');
-      let span1 = this.getLangSpan('eng', false);
-      let span2 = this.getLangSpan('ru');
+      let lang = localStorage.getItem('display')
+      let span1 = this.getLangSpan('eng', false)
+      let span2 = this.getLangSpan('ru')
       if (lang == 'ru'){
-        span1 = this.getLangSpan('eng');
-        span2 = this.getLangSpan('ru', false);
+        span1 = this.getLangSpan('eng')
+        span2 = this.getLangSpan('ru', false)
       }
-      this.fillKey(value, span1, this.symbols, this.symbolsOnShift);
-      this.fillKey(valueRu, span2, this.symbolsRu, this.symbolsOnShiftRu);
-      key.append(span1);
-      key.append(span2);
+      this.fillKey(value, span1, this.symbols, this.symbolsOnShift)
+      this.fillKey(valueRu, span2, this.symbolsRu, this.symbolsOnShiftRu)
+      key.append(span1)
+      key.append(span2)
     }
-    key.style.width = `${width}px`;
-    this.value = key;
+    key.style.width = `${width}px`
+    this.value = key
   }
 
   getKey() {
-    return this.value;
+    return this.value
   }
 
   fillKey(value, span, symbols, symbolsOnShift) {
@@ -142,23 +142,24 @@ export class Key {
       caps.textContent = value
       shiftCaps.textContent = symbolsOnShift[symbols.indexOf(value)]
     } else {
-      caseUp.textContent = value.toUpperCase();
-      caps.textContent = value.toUpperCase();
-      shiftCaps.textContent = value;
+      caseUp.textContent = value.toUpperCase()
+      caps.textContent = value.toUpperCase()
+      shiftCaps.textContent = value
     }
   }
 
   getLangSpan(lang = 'eng', hidden = true) {
-    if (!hidden) localStorage.setItem('display', lang);
+    if (!hidden) localStorage.setItem('display', lang)
 
-    let span = document.createElement('span');
-    span.className = lang;
-    if (hidden) span.classList.add('hidden');
-    span.innerHTML =
-      '<span class="caseDown"></span>' +
-      '<span class="caseUp hidden"></span>' +
-      '<span class="caps hidden"></span>' +
-      '<span class="shiftCaps hidden"></span>';
-    return span;
+    let span = document.createElement('span')
+    span.className = lang
+    if (hidden) span.classList.add('hidden')
+    span.innerHTML = `
+      <span class="caseDown"></span>
+      <span class="caseUp hidden"></span>
+      <span class="caps hidden"></span>
+      <span class="shiftCaps hidden"></span>
+    `
+    return span
   }
 }

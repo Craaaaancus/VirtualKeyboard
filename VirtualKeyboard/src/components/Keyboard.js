@@ -1,7 +1,7 @@
 import { Key } from "./Key.js"
 
 export class Keyboard {
-  keyboard = null;
+  keyboard = null
   keyboardIds = [
     [
       'Backquote',
@@ -77,7 +77,7 @@ export class Keyboard {
       'ArrowRight',
       'ControlRight',
     ],
-  ];
+  ]
   EngKeyboard = [
     [
       '`',
@@ -153,7 +153,7 @@ export class Keyboard {
       '▶',
       'CtrlRight',
     ],
-  ];
+  ]
   RusKeyboard = [
     [
       'ё',
@@ -229,29 +229,29 @@ export class Keyboard {
       '▶',
       'CtrlRight',
     ],
-  ];
+  ]
   constructor() {
-    this.keyboard = document.createElement('div');
-    this.keyboard.className = 'keyboard';
+    this.keyboard = document.createElement('div')
+    this.keyboard.className = 'keyboard'
     for (let i = 0; i < 5; i++) {
-      let row = document.createElement('div');
-      row.className = 'keyboard--row';
+      let row = document.createElement('div')
+      row.className = 'keyboard--row'
       for (let j = 0; j < this.EngKeyboard[i].length; j++) {
         let obj = new Key(
           this.EngKeyboard[i][j],
           this.RusKeyboard[i][j],
           this.getWidth(this.EngKeyboard[i][j])
-        );
-        let key = obj.getKey();
-        key.id = this.keyboardIds[i][j];
-        row.append(key);
+        )
+        let key = obj.getKey()
+        key.id = this.keyboardIds[i][j]
+        row.append(key)
       }
-      this.keyboard.append(row);
+      this.keyboard.append(row)
     }
   }
   
   getKeyboard() {
-    return this.keyboard;
+    return this.keyboard
   }
 
   getWidth(key) {
@@ -259,18 +259,18 @@ export class Keyboard {
       case 'Backspace':
       case 'CapsLock':
       case 'ShiftLeft':
-        return 100;
+        return 100
       case 'Tab':
-        return 50;
+        return 50
       case 'Del':
-        return 44;
+        return 44
       case 'Enter':
       case 'ShiftRight':
-        return 86;
+        return 86
       case 'Space':
-        return 330;
+        return 330
       default:
-        return 40;
+        return 40
     }
   }
 }
