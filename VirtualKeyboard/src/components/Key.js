@@ -154,11 +154,12 @@ export class Key {
     let span = document.createElement('span')
     span.className = lang
     if (hidden) span.classList.add('hidden')
-    span.innerHTML =
-      '<span class="caseDown"></span>' +
-      '<span class="caseUp hidden"></span>' +
-      '<span class="caps hidden"></span>' +
-      '<span class="shiftCaps hidden"></span>'
+    span.innerHTML = `
+      <span class="caseDown"></span>
+      <span class="caseUp hidden"></span>
+      <span class="caps hidden"></span>
+      <span class="shiftCaps hidden"></span>
+    `
     return span
   }
 }

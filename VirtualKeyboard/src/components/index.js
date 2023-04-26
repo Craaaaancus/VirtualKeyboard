@@ -1,27 +1,27 @@
 import { Keyboard } from "./Keyboard.js"
 
 function CreateKeyboard() {
-  let centralizer = document.createElement('div')
+  const centralizer = document.createElement('div')
   centralizer.className = 'centralizer'
 
-  let title = document.createElement('p')
+  const title = document.createElement('p')
   title.className = 'title'
   title.textContent = 'Virtual keyboard'
-  let textarea = document.createElement('textarea')
+  const textarea = document.createElement('textarea')
   textarea.className = 'textarea'
   textarea.id = 'textarea'
   textarea.cols = 50
   textarea.rows = 5
   textarea.spellcheck = false
-  let keyboard = new Keyboard().getKeyboard()
-  let keyboardIds = new Keyboard().keyboardIds
-  let description = document.createElement('p')
+  const keyboard = new Keyboard().getKeyboard()
+  const keyboardIds = new Keyboard().keyboardIds
+  const description = document.createElement('p')
   description.className = 'description'
   description.textContent = 'Keyboard for Windows'
-  let language = document.createElement('p')
+  const language = document.createElement('p')
   language.className = 'language'
   language.innerHTML =
-    'Keyboard shortcut for language translation: left <span>shift + alt</span>'
+    `Keyboard shortcut for language translation: left <span>shift + alt</span>`
 
   centralizer.append(title)
   centralizer.append(textarea)
@@ -29,14 +29,14 @@ function CreateKeyboard() {
   centralizer.append(description)
   centralizer.append(language)
 
-  let body = document.querySelector('body')
-  let ru = document.getElementsByClassName('ru')
-  let eng = document.getElementsByClassName('eng')
-  let caps = document.getElementsByClassName('caps')
-  let caseDown = document.getElementsByClassName('caseDown')
-  let caseUp = document.getElementsByClassName('caseUp')
-  let shiftCaps = document.getElementsByClassName('shiftCaps')
-  let specialKeys = [
+  const body = document.querySelector('body')
+  const ru = document.getElementsByClassName('ru')
+  const eng = document.getElementsByClassName('eng')
+  const caps = document.getElementsByClassName('caps')
+  const caseDown = document.getElementsByClassName('caseDown')
+  const caseUp = document.getElementsByClassName('caseUp')
+  const shiftCaps = document.getElementsByClassName('shiftCaps')
+  const specialKeys = [
     'Tab',
     'CapsLock',
     'Backspace',
@@ -114,7 +114,7 @@ function CreateKeyboard() {
       textarea.textContent = slice + textarea.textContent.slice(getCaretPos(textarea) + 1, textarea.textContent.length)
       textarea.selectionStart = n
     }
-    else{
+    else {
       let caretPos = getCaretPos(textarea)
       let symbol = ""
       if (!specialKeys.includes(code)){
@@ -122,7 +122,7 @@ function CreateKeyboard() {
       }
       if (code == 'ArrowRight') symbol = '▶'
       if (code == 'ArrowUp')    symbol = '▲'
-      if (code ==  'ArrowLeft') symbol = '◀'
+      if (code == 'ArrowLeft')  symbol = '◀'
       if (code == 'ArrowDown')  symbol = '▼' 
       if (code == 'Space')      symbol = ' '
       if (code == 'Tab')        symbol = '\t'
@@ -134,7 +134,7 @@ function CreateKeyboard() {
     }
   }
 
-  body.addEventListener('keydown', function (event) {
+  body.addEventListener('keydown', (event) => {
     let key = document.getElementById(event.code)
     if (!key) return
     event.preventDefault()
@@ -193,7 +193,7 @@ function CreateKeyboard() {
     addToTextarea(key, event.code)
   })
 
-  body.addEventListener('keyup', function (event) {
+  body.addEventListener('keyup', (event) => {
     let key = document.getElementById(event.code)
     if (!key) return 
 
@@ -217,7 +217,7 @@ function CreateKeyboard() {
     } else if (event.code != 'CapsLock') key.classList.remove('active')
   })
 
-  body.addEventListener('mousedown', function(event){
+  body.addEventListener('mousedown', (event) => {
     for (let i = 0; i < keyboardIds.length; i++){
       for (let j = 0; j < keyboardIds[i].length; j++) {
         let target = event.target.closest(`#${keyboardIds[i][j]}`)
@@ -242,7 +242,7 @@ function CreateKeyboard() {
                 caps[i + 1]?.classList.add('hidden')
               }
             }
-            else{
+            else {
               for (let i = 0; i < caps.length; i += 2) {
                 caseUp[i]?.classList.remove('hidden')
                 caseUp[i + 1]?.classList.remove('hidden')
@@ -257,7 +257,7 @@ function CreateKeyboard() {
     }
   })
 
-  body.addEventListener('mouseup', function(event){
+  body.addEventListener('mouseup', (event) => {
     let arr = ['#ShiftLeft', '#ShiftRight']
     
     for (let i = 0; i < arr.length; i++){
@@ -284,16 +284,16 @@ function CreateKeyboard() {
 
   function getCaretPos(obj) {
     obj.focus()
-    if (obj.selectionStart!==false) return obj.selectionStart
+    if (obj.selectionStart !== false) return obj.selectionStart
     else return 0
   }
 
-  keyboard.addEventListener('mousedown', function(event){
+  keyboard.addEventListener('mousedown', (event) => {
     event.preventDefault()
   })
 
 
-  textarea.addEventListener('keydown', function(event){
+  textarea.addEventListener('keydown', (event) => {
     event.preventDefault()
   })
 
