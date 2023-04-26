@@ -13,8 +13,8 @@ function CreateKeyboard() {
   textarea.cols = 50;
   textarea.rows = 5;
   textarea.spellcheck = false;
-  let keyboard = new KeyBoard().getKeyboard();
-  let keyboardIds = new KeyBoard().keyboardIds;
+  let keyboard = new Keyboard().getKeyboard();
+  let keyboardIds = new Keyboard().keyboardIds;
   let description = document.createElement('p');
   description.className = 'description';
   description.textContent = 'Keyboard for Windows';
@@ -91,6 +91,7 @@ function CreateKeyboard() {
       }
     }
   }
+  
   function addToTextarea(key, code){
     if (code == 'AltRight' || code == 'AltLeft' || code == 'ControlLeft' || code == 'ControlRight' || code == 'ShiftLeft' || code == 'ShiftRight' || code == 'CapsLock' || code == 'MetaLeft') return;
     if (code == 'Backspace') {
