@@ -69,29 +69,29 @@ function CreateKeyboard() {
     }
     if (document.getElementById('CapsLock').classList.contains('active')) {
       for (let i = 0; i < caps.length; i++) {
-        caseDown[i].classList.add('hidden');
-        caseDown[i + 1].classList.add('hidden');
-        caps[i].classList.remove('hidden');
-        caps[i + 1].classList.remove('hidden');
-        caseUp[i].classList.add('hidden');
-        caseUp[i + 1].classList.add('hidden');
-        shiftCaps[i].classList.add('hidden');
-        shiftCaps[i + 1].classList.add('hidden');
+        caseDown[i]?.classList.add('hidden');
+        caseDown[i + 1]?.classList.add('hidden');
+        caps[i]?.classList.remove('hidden');
+        caps[i + 1]?.classList.remove('hidden');
+        caseUp[i]?.classList.add('hidden');
+        caseUp[i + 1]?.classList.add('hidden');
+        shiftCaps[i]?.classList.add('hidden');
+        shiftCaps[i + 1]?.classList.add('hidden');
       }
     } else {
       for (let i = 0; i < caps.length; i++) {
-        caseDown[i].classList.remove('hidden');
-        caseDown[i + 1].classList.remove('hidden');
-        caps[i].classList.add('hidden');
-        caps[i + 1].classList.add('hidden');
-        caseUp[i].classList.add('hidden');
-        caseUp[i + 1].classList.add('hidden');
-        shiftCaps[i].classList.add('hidden');
-        shiftCaps[i + 1].classList.add('hidden');
+        caseDown[i]?.classList.remove('hidden');
+        caseDown[i + 1]?.classList.remove('hidden');
+        caps[i]?.classList.add('hidden');
+        caps[i + 1]?.classList.add('hidden');
+        caseUp[i]?.classList.add('hidden');
+        caseUp[i + 1]?.classList.add('hidden');
+        shiftCaps[i]?.classList.add('hidden');
+        shiftCaps[i + 1]?.classList.add('hidden');
       }
     }
   }
-  
+
   function addToTextarea(key, code){
     if (code == 'AltRight' || code == 'AltLeft' || code == 'ControlLeft' || code == 'ControlRight' || code == 'ShiftLeft' || code == 'ShiftRight' || code == 'CapsLock' || code == 'MetaLeft') return;
     if (code == 'Backspace') {
@@ -135,8 +135,10 @@ function CreateKeyboard() {
   }
 
   body.addEventListener('keydown', function (event) {
-    let key = document.getElementById(event.code);
-    event.preventDefault();
+    let key = document.getElementById(event.code)
+    if (!key) return
+    event.preventDefault()
+
     if (
       event.code == 'Tab' ||
       event.code == 'ArrowRight' ||
@@ -146,7 +148,8 @@ function CreateKeyboard() {
     ) {
       event.preventDefault();
       key.classList.add('active');
-    } else if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
+    } 
+    else if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
       key.classList.add('active');
       if (document.getElementById('AltLeft').classList.contains('active')) {
         addLangChange();
@@ -154,55 +157,60 @@ function CreateKeyboard() {
         document.getElementById('CapsLock').classList.contains('active')
       ) {
         for (let i = 0; i < caps.length; i += 2) {
-          shiftCaps[i].classList.remove('hidden');
-          shiftCaps[i + 1].classList.remove('hidden');
-          caps[i].classList.add('hidden');
-          caps[i + 1].classList.add('hidden');
+          shiftCaps[i]?.classList.remove('hidden');
+          shiftCaps[i + 1]?.classList.remove('hidden');
+          caps[i]?.classList.add('hidden');
+          caps[i + 1]?.classList.add('hidden');
         }
       } else {
         for (let i = 0; i < caps.length; i += 2) {
-          caseUp[i].classList.remove('hidden');
-          caseUp[i + 1].classList.remove('hidden');
-          caseDown[i].classList.add('hidden');
-          caseDown[i + 1].classList.add('hidden');
+          caseUp[i]?.classList.remove('hidden');
+          caseUp[i + 1]?.classList.remove('hidden');
+          caseDown[i]?.classList.add('hidden');
+          caseDown[i + 1]?.classList.add('hidden');
         }
       }
-    } else if (event.code == 'AltLeft') {
+    } 
+    else if (event.code == 'AltLeft') {
       key.classList.add('active');
       event.preventDefault();
       if (document.getElementById('ShiftLeft').classList.contains('active')) {
         addLangChange();
       }
-    } else if (event.code == 'CapsLock') {
+    } 
+    else if (event.code == 'CapsLock') {
       key.classList.toggle('active');
       for (let i = 0; i < caps.length; i += 2) {
-        caseDown[i].classList.toggle('hidden');
-        caseDown[i + 1].classList.toggle('hidden');
-        caps[i].classList.toggle('hidden');
-        caps[i + 1].classList.toggle('hidden');
+        caseDown[i]?.classList.toggle('hidden');
+        caseDown[i + 1]?.classList.toggle('hidden');
+        caps[i]?.classList.toggle('hidden');
+        caps[i + 1]?.classList.toggle('hidden');
       }
-    } else {
+    } 
+    else {
       key.classList.add('active');
     }
     addToTextarea(key, event.code);
   });
 
   body.addEventListener('keyup', function (event) {
-    let key = document.getElementById(event.code);
+    let key = document.getElementById(event.code)
+    if (!key) return 
+
     if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
       if (document.getElementById('CapsLock').classList.contains('active')) {
         for (let i = 0; i < caps.length; i += 2) {
-          shiftCaps[i].classList.add('hidden');
-          shiftCaps[i + 1].classList.add('hidden');
-          caps[i].classList.remove('hidden');
-          caps[i + 1].classList.remove('hidden');
+          shiftCaps[i]?.classList.add('hidden');
+          shiftCaps[i + 1]?.classList.add('hidden');
+          caps[i]?.classList.remove('hidden');
+          caps[i + 1]?.classList.remove('hidden');
         }
       } else {
         for (let i = 0; i < caps.length; i += 2) {
-          caseUp[i].classList.add('hidden');
-          caseUp[i + 1].classList.add('hidden');
-          caseDown[i].classList.remove('hidden');
-          caseDown[i + 1].classList.remove('hidden');
+          caseUp[i]?.classList.add('hidden');
+          caseUp[i + 1]?.classList.add('hidden');
+          caseDown[i]?.classList.remove('hidden');
+          caseDown[i + 1]?.classList.remove('hidden');
         }
       }
       key.classList.remove('active');
@@ -217,10 +225,10 @@ function CreateKeyboard() {
           if (target.id == 'CapsLock'){
             target.classList.toggle('active');
             for (let i = 0; i < caps.length; i += 2) {
-              caseDown[i].classList.toggle('hidden');
-              caseDown[i + 1].classList.toggle('hidden');
-              caps[i].classList.toggle('hidden');
-              caps[i + 1].classList.toggle('hidden');
+              caseDown[i]?.classList.toggle('hidden');
+              caseDown[i + 1]?.classList.toggle('hidden');
+              caps[i]?.classList.toggle('hidden');
+              caps[i + 1]?.classList.toggle('hidden');
             }
           }
           if (target.id == 'ShiftLeft' || target.id == 'ShiftRight'){
@@ -228,18 +236,18 @@ function CreateKeyboard() {
               document.getElementById('CapsLock').classList.contains('active')
             ) {
               for (let i = 0; i < caps.length; i += 2) {
-                shiftCaps[i].classList.remove('hidden');
-                shiftCaps[i + 1].classList.remove('hidden');
-                caps[i].classList.add('hidden');
-                caps[i + 1].classList.add('hidden');
+                shiftCaps[i]?.classList.remove('hidden');
+                shiftCaps[i + 1]?.classList.remove('hidden');
+                caps[i]?.classList.add('hidden');
+                caps[i + 1]?.classList.add('hidden');
               }
             }
             else{
               for (let i = 0; i < caps.length; i += 2) {
-                caseUp[i].classList.remove('hidden');
-                caseUp[i + 1].classList.remove('hidden');
-                caseDown[i].classList.add('hidden');
-                caseDown[i + 1].classList.add('hidden');
+                caseUp[i]?.classList.remove('hidden');
+                caseUp[i + 1]?.classList.remove('hidden');
+                caseDown[i]?.classList.add('hidden');
+                caseDown[i + 1]?.classList.add('hidden');
               }
             }
           }
@@ -257,17 +265,17 @@ function CreateKeyboard() {
       if (target){
         if (document.getElementById('CapsLock').classList.contains('active')) {
           for (let i = 0; i < caps.length; i += 2) {
-            shiftCaps[i].classList.add('hidden');
-            shiftCaps[i + 1].classList.add('hidden');
-            caps[i].classList.remove('hidden');
-            caps[i + 1].classList.remove('hidden');
+            shiftCaps[i]?.classList.add('hidden');
+            shiftCaps[i + 1]?.classList.add('hidden');
+            caps[i]?.classList.remove('hidden');
+            caps[i + 1]?.classList.remove('hidden');
           }
         } else {
           for (let i = 0; i < caps.length; i += 2) {
-            caseUp[i].classList.add('hidden');
-            caseUp[i + 1].classList.add('hidden');
-            caseDown[i].classList.remove('hidden');
-            caseDown[i + 1].classList.remove('hidden');
+            caseUp[i]?.classList.add('hidden');
+            caseUp[i + 1]?.classList.add('hidden');
+            caseDown[i]?.classList.remove('hidden');
+            caseDown[i + 1]?.classList.remove('hidden');
           }
         }
       }
