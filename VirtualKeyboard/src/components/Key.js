@@ -1,5 +1,39 @@
-export class Key {
+function fillKey(value, span, symbols, symbolsOnShift) {
+  const caseDown = span.querySelector('.caseDown')
+  const caseUp = span.querySelector('.caseUp')
+  const caps = span.querySelector('.caps')
+  const shiftCaps = span.querySelector('.shiftCaps')
+
+  caseDown.textContent = value
+  if (symbols.includes(value)) {
+    caseUp.textContent = symbolsOnShift[symbols.indexOf(value)]
+    caps.textContent = value
+    shiftCaps.textContent = symbolsOnShift[symbols.indexOf(value)]
+  } else {
+    caseUp.textContent = value.toUpperCase()
+    caps.textContent = value.toUpperCase()
+    shiftCaps.textContent = value
+  }
+}
+
+function getLangSpan(lang = 'eng', hidden = true) {
+  if (!hidden) localStorage.setItem('display', lang)
+
+  const span = document.createElement('span')
+  span.className = lang
+  if (hidden) span.classList.add('hidden')
+  span.innerHTML = `
+    <span class="caseDown"></span>
+    <span class="caseUp hidden"></span>
+    <span class="caps hidden"></span>
+    <span class="shiftCaps hidden"></span>
+  `
+  return span
+}
+
+export default class Key {
   value = null
+
   specials = [
     'Tab',
     'CapsLock',
@@ -19,6 +53,7 @@ export class Key {
     '◀',
     '▶',
   ]
+
   symbols = [
     '1',
     '2',
@@ -42,6 +77,7 @@ export class Key {
     '.',
     '/',
   ]
+
   symbolsOnShift = [
     '!',
     '@',
@@ -65,6 +101,7 @@ export class Key {
     '>',
     '?',
   ]
+
   symbolsRu = [
     '1',
     '2',
@@ -81,6 +118,7 @@ export class Key {
     '\\',
     '.',
   ]
+
   symbolsOnShiftRu = [
     '!',
     '"',
@@ -97,23 +135,26 @@ export class Key {
     '/',
     ',',
   ]
-  
+
   constructor(value, valueRu = null, width = 40) {
-    let key = document.createElement('div')
+    this.fillKey = fillKey.bind(this)
+    this.getLangSpan = getLangSpan.bind(this)
+
+    const key = document.createElement('div')
     key.className = 'keyboard--key'
     if (this.specials.includes(value)) {
       key.classList.add('black')
       let temp = value
-      if (value == 'ShiftLeft' || value == 'ShiftRight') temp = 'Shift'
-      else if (value == 'CtrlLeft' || value == 'CtrlRight') temp = 'Ctrl'
-      else if (value == 'AltLeft' || value == 'AltRight') temp = 'Alt'
-      else if (value == 'Space') temp = ''
+      if (value === 'ShiftLeft' || value === 'ShiftRight') temp = 'Shift'
+      else if (value === 'CtrlLeft' || value === 'CtrlRight') temp = 'Ctrl'
+      else if (value === 'AltLeft' || value === 'AltRight') temp = 'Alt'
+      else if (value === 'Space') temp = ''
       key.textContent = temp
     } else {
-      let lang = localStorage.getItem('display')
+      const lang = localStorage.getItem('display')
       let span1 = this.getLangSpan('eng', false)
       let span2 = this.getLangSpan('ru')
-      if (lang == 'ru'){
+      if (lang === 'ru') {
         span1 = this.getLangSpan('eng')
         span2 = this.getLangSpan('ru', false)
       }
@@ -128,38 +169,5 @@ export class Key {
 
   getKey() {
     return this.value
-  }
-
-  fillKey(value, span, symbols, symbolsOnShift) {
-    let caseDown = span.querySelector('.caseDown')
-    let caseUp = span.querySelector('.caseUp')
-    let caps = span.querySelector('.caps')
-    let shiftCaps = span.querySelector('.shiftCaps')
-
-    caseDown.textContent = value
-    if (symbols.includes(value)) {
-      caseUp.textContent = symbolsOnShift[symbols.indexOf(value)]
-      caps.textContent = value
-      shiftCaps.textContent = symbolsOnShift[symbols.indexOf(value)]
-    } else {
-      caseUp.textContent = value.toUpperCase()
-      caps.textContent = value.toUpperCase()
-      shiftCaps.textContent = value
-    }
-  }
-
-  getLangSpan(lang = 'eng', hidden = true) {
-    if (!hidden) localStorage.setItem('display', lang)
-
-    let span = document.createElement('span')
-    span.className = lang
-    if (hidden) span.classList.add('hidden')
-    span.innerHTML = `
-      <span class="caseDown"></span>
-      <span class="caseUp hidden"></span>
-      <span class="caps hidden"></span>
-      <span class="shiftCaps hidden"></span>
-    `
-    return span
   }
 }
