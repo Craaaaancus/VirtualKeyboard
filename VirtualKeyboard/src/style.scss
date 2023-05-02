@@ -1,0 +1,95 @@
+$orange: rgb(233, 121, 0);
+$light-grey: #888888;
+$grey: #444444;
+$dark-grey: #222222;
+
+.centralizer {
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  color: $orange;
+  font-weight: bold;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #000;
+}
+
+.textarea {
+  width: 700px;
+  height: 200px;
+  margin: 10px auto 10px;
+  padding: 10px;
+  font-size: 18px;
+  resize: none;
+  overflow: auto;
+  transition: 0.1s;
+}
+
+.textarea:focus {
+  outline: none;
+  border: 1px solid $orange;
+}
+
+.keyboard {
+  width: 704px;
+  margin: 0 auto;
+  padding: 5px;
+  background: $light-grey;
+  border: 3px solid $dark-grey;
+  border-radius: 5px;
+}
+
+.keyboard--row {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.keyboard--key {
+  background-color: $grey;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  font-weight: 500;
+  line-height: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.keyboard--key:hover {
+  background-color: $orange;
+}
+
+.keyboard--key:active {
+  border-radius: 20px;
+}
+
+.description {
+  width: 700px;
+  margin: 15px auto;
+  padding-top: 10px;
+  border-top: 3px solid $orange;
+}
+
+.language {
+  span {
+    color: $orange;
+  }
+}
+
+.black {
+  background-color: $dark-grey;
+}
+
+.active {
+  background-color: $orange;
+  border-radius: 20px;
+}
+
+.hidden {
+  display: none;
+}
