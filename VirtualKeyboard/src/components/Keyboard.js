@@ -1,7 +1,28 @@
-import { Key } from "./Key.js"
+import Key from './Key.js'
 
-export class Keyboard {
+function getWidth(key) {
+  switch (key) {
+    case 'Backspace':
+    case 'CapsLock':
+    case 'ShiftLeft':
+      return 100
+    case 'Tab':
+      return 50
+    case 'Del':
+      return 44
+    case 'Enter':
+    case 'ShiftRight':
+      return 86
+    case 'Space':
+      return 330
+    default:
+      return 40
+  }
+}
+
+export default class Keyboard {
   keyboard = null
+
   keyboardIds = [
     [
       'Backquote',
@@ -78,6 +99,7 @@ export class Keyboard {
       'ControlRight',
     ],
   ]
+
   EngKeyboard = [
     [
       '`',
@@ -154,6 +176,7 @@ export class Keyboard {
       'CtrlRight',
     ],
   ]
+
   RusKeyboard = [
     [
       'ё',
@@ -230,47 +253,30 @@ export class Keyboard {
       'CtrlRight',
     ],
   ]
+
   constructor() {
     this.keyboard = document.createElement('div')
     this.keyboard.className = 'keyboard'
-    for (let i = 0; i < 5; i++) {
-      let row = document.createElement('div')
+    this.getWidth = getWidth.bind(this)
+
+    for (let i = 0; i < 5; i += 1) {
+      const row = document.createElement('div')
       row.className = 'keyboard--row'
-      for (let j = 0; j < this.EngKeyboard[i].length; j++) {
-        let obj = new Key(
+      for (let j = 0; j < this.EngKeyboard[i].length; j += 1) {
+        const obj = new Key(
           this.EngKeyboard[i][j],
           this.RusKeyboard[i][j],
-          this.getWidth(this.EngKeyboard[i][j])
+          this.getWidth(this.EngKeyboard[i][j]),
         )
-        let key = obj.getKey()
+        const key = obj.getKey()
         key.id = this.keyboardIds[i][j]
         row.append(key)
       }
       this.keyboard.append(row)
     }
   }
-  
+
   getKeyboard() {
     return this.keyboard
-  }
-
-  getWidth(key) {
-    switch (key) {
-      case 'Backspace':
-      case 'CapsLock':
-      case 'ShiftLeft':
-        return 100
-      case 'Tab':
-        return 50
-      case 'Del':
-        return 44
-      case 'Enter':
-      case 'ShiftRight':
-        return 86
-      case 'Space':
-        return 330
-      default:
-        return 40
-    }
   }
 }
